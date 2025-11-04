@@ -87,15 +87,20 @@ app.use(express.urlencoded({ extended: true }));
 /* =======================================
  * Secção 3: Configuração da Base de Dados
  * ======================================= */
-const dbConfig = {
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_DATABASE,
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT || 5432,
-  ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : true // MUDANÇA: SSL é 'true' por padrão
-};
-const pool = new Pool(dbConfig);
+
+// Verifica se estamos em produção (no Render)
+const isProduction = process.env.NODE_ENV === 'production';
+
+// O 'pg' (node-postgres) irá usar automaticamente as variáveis de ambiente PG*
+// (ex: PGUSER, PGHOST) se a 'connectionString' não for fornecida.
+const pool = new Pool({
+  // O Render define a DATABASE_URL. Para desenvolvimento local, isto será 'undefined'
+  connectionString: process.env.DATABASE_URL,
+  
+  // O Render exige SSL. Esta configuração habilita-o apenas em produção.
+  ssl: isProduction ? { rejectUnauthorized: false } : undefined
+});
+
 
 /* =======================================
  * Secção 4: Middlewares (Sessão, CSRF, Multer)

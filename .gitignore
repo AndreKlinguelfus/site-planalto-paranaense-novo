@@ -1,0 +1,10 @@
+# Ficheiros de configuração local e dependências
+node_modules/
+.env
+
+# Outros ficheiros que queiras ignorar (logs, uploads se não forem para o Git, etc.)
+public/uploads/
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

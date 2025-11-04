@@ -1,0 +1,171 @@
+/* =======================================
+ * CSS GERAL DO PAINEL DE ADMIN
+ * (COM A NOVA PALETA DE CORES)
+ * ======================================= */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    /* MUDANÇA DE COR: Fundo (antigo preto) para Azul */
+    background-color: #0d47a1; /* <-- MUDANÇA (Azul Escuro) */
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+.container {
+    width: 90%; 
+    max-width: 1100px; 
+    margin: 20px auto; /* <-- Centraliza */
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.login-container {
+    max-width: 400px;
+    width: 90%; 
+    margin: 40px auto; /* <-- Centraliza */
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* =======================================
+ * CSS DOS COMPONENTES DE ADMIN
+ * (COM A NOVA PALETA DE CORES)
+ * ======================================= */
+
+/* Barra de Navegação de Admin */
+.admin-nav {
+    /* MUDANÇA DE COR: Fundo (antigo cinza) para Castanho */
+    background-color: #a67c52; /* <-- MUDANÇA (Castanho/Ocre) */
+    padding: 12px 15px; /* Um pouco mais de espaço */
+    margin-bottom: 20px;
+    border-radius: 4px; /* Cantos arredondados */
+}
+
+.admin-nav a {
+    margin-right: 15px;
+    text-decoration: none;
+    /* MUDANÇA DE COR: Links (antigo azul) para Branco */
+    color: #ffffff; /* <-- MUDANÇA (Branco) */
+    font-weight: bold;
+    padding: 5px 0;
+    border-bottom: 2px solid transparent;
+    transition: border-bottom 0.2s ease;
+}
+
+.admin-nav a:hover {
+    border-bottom: 2px solid #ffffff; /* Efeito hover */
+}
+
+.admin-nav a.logout {
+    color: #fdd835; /* Amarelo (destaque para sair) */
+    float: right; 
+}
+.admin-nav a.logout:hover {
+    border-bottom-color: #fdd835;
+}
+
+
+/* Tabela do Dashboard */
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.admin-table th, .admin-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+.admin-table th {
+    background-color: #f9f9f9;
+}
+.admin-table a {
+    /* MUDANÇA DE COR: Links [Editar] (antigo azul) para Verde */
+    color: #33691E; /* <-- MUDANÇA (Verde Floresta) */
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 10px;
+}
+.admin-table a.delete {
+    color: #d9534f; /* Vermelho (Mantém) */
+}
+
+/* Grupos de Formulário */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* Inputs, Textareas e Selects */
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group textarea,
+.form-group-select,
+.form-group-file {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1em;
+}
+
+.form-group-select {
+    background-color: white;
+    height: 40px;
+}
+
+.form-group textarea {
+    height: 300px;
+    resize: vertical;
+}
+
+/* Botão de Envio (Submit) - UNIFICADO */
+.submit-button {
+    /* MUDANÇA DE COR: Unificado para Verde */
+    background-color: #33691E; /* <-- MUDANÇA (Verde Floresta) */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.1em;
+    width: 100%; 
+    transition: background-color 0.2s ease;
+}
+
+.submit-button:hover {
+    /* MUDANÇA DE COR: Hover para Verde mais escuro */
+    background-color: #1B5E20; /* <-- MUDANÇA (Verde Escuro) */
+}
+
+/* * As classes .blue e .green foram removidas 
+ * pois agora temos um estilo único .submit-button
+ * (Não precisas de te preocupar, o HTML continua a funcionar)
+ */
+
+/* Pré-visualização da Imagem (Edição) */
+.current-image-preview {
+    max-width: 250px;
+    height: auto;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 10px;
+    display: block;
+}

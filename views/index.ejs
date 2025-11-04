@@ -1,0 +1,163 @@
+<%- include('partials/header') %>
+
+    <main class="container">
+
+        <% if (articles.length > 0) { %>
+            
+            <%
+                // Apanhamos os 3 primeiros artigos
+                const heroMain = articles[0];
+ const heroSide1 = (articles.length > 1) ? articles[1] : null;
+                const heroSide2 = (articles.length > 2) ? articles[2] : null;
+ %>
+
+            <div class="hero-grid">
+                
+                <div class="hero-main">
+                    <article class="article-box hero-article-main">
+                        <% if (heroMain.image_url) { %>
+    
+                         <img src="<%= heroMain.image_url %>" alt="<%= heroMain.title %>" class="article-image">
+                        <% } %>
+                        <div class="article-content-wrapper"> 
+                 
+            <% if (heroMain.category && heroMain.category !== 'Geral') { %>
+                                <span class="article-category"><%= heroMain.category %></span>
+                            <% } %>
+                
+             <h2><a href="/artigo/<%= heroMain.id %>"><%= heroMain.title %></a></h2>
+                            <div class="article-meta">
+                               <span>Por: <strong><%= heroMain.author %></strong></span> |
+ <span><%= new Date(heroMain.created_at).toLocaleDateString('pt-BR') %></span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+         
+        <div class="hero-sidebar">
+                    <% if (heroSide1) { %>
+                        <article class="article-box hero-article-side">
+                            <% if (heroSide1.image_url) { %>
+          
+                       <img src="<%= heroSide1.image_url %>" alt="<%= heroSide1.title %>" class="article-image">
+                            <% } %>
+                            <div class="article-content-wrapper"> 
+           
+                      <h2><a href="/artigo/<%= heroSide1.id %>"><%= heroSide1.title %></a></h2>
+                            </div>
+                        </article>
+                    <% } 
+ %>
+
+                    <% if (heroSide2) { %>
+                        <article class="article-box hero-article-side">
+                            <% if (heroSide2.image_url) { %>
+                  
+               <img src="<%= heroSide2.image_url %>" alt="<%= heroSide2.title %>" class="article-image">
+                            <% } %>
+                            <div class="article-content-wrapper"> 
+                   
+              <h2><a href="/artigo/<%= heroSide2.id %>"><%= heroSide2.title %></a></h2>
+                            </div>
+                        </article>
+                    <% } %>
+        
+         </div>
+
+            </div> <% } else { %>
+            <p>Ainda não há notícias publicadas hoje.</p>
+        <% } %>
+
+
+        <% if (articles.length > 3) { %>
+            
+            <h2 class="section-title">Artigos Recentes</h2>
+        
+ 
+            <div class="swiffy-slider slider-item-show3 slider-nav-round slider-nav-dark" data-slider-nav="false">
+                <ul class="slider-container">
+                    
+                    <% articles.slice(3).forEach(artigo => { %>
+                      
+   <li class="slider-item">
+                            <a href="/artigo/<%= artigo.id %>" class="slider-item-link">
+                                <% if (artigo.image_url) { %>
+                             
+        <img src="<%= artigo.image_url %>" alt="<%= artigo.title %>" class="slider-item-image">
+                                <% } %>
+                                <h3 class="slider-item-title"><%= artigo.title %></h3>
+                 
+            </a>
+                        </li>
+                    <% }) %>
+
+                </ul>
+            
+               
+  <button type="button" class="slider-nav"></button>
+                <button type="button" class="slider-nav slider-nav-next"></button>
+            </div> <% } %>
+
+        <% if (opiniaoArticles && opiniaoArticles.length > 0) { %>
+            <h2 class="section-title">Opinião</h2>
+            
+            <div class="swiffy-slider slider-item-show3 slider-nav-round slider-nav-dark" data-slider-nav="false">
+     
+            <ul class="slider-container">
+                    
+                    <% opiniaoArticles.forEach(artigo => { %>
+                        <li class="slider-item">
+                   
+          <a href="/artigo/<%= artigo.id %>" class="slider-item-link">
+                                <% if (artigo.image_url) { %>
+                                    <img src="<%= artigo.image_url %>" alt="<%= artigo.title %>" class="slider-item-image">
+        
+                         <% } %>
+                                <h3 class="slider-item-title"><%= artigo.title %></h3>
+                            </a>
+           
+              </li>
+                    <% }) %>
+                    
+                </ul>
+            
+                <button 
+ type="button" class="slider-nav"></button>
+                <button type="button" class="slider-nav slider-nav-next"></button>
+            </div>
+        <% } %>
+
+
+        
+        <% if (politicaArticles && politicaArticles.length > 0) { %>
+    <h2 class="section-title">Política</h2>
+
+    <div class="swiffy-slider slider-item-show3 slider-nav-round slider-nav-dark" data-slider-nav="false">
+        <ul class="slider-container">
+
+           
+  <% politicaArticles.forEach(artigo => { %>
+                <li class="slider-item">
+                    <a href="/artigo/<%= artigo.id %>" class="slider-item-link">
+                        <% if (artigo.image_url) { %>
+                          
+   <img src="<%= artigo.image_url %>" alt="<%= artigo.title %>" class="slider-item-image">
+                        <% } %>
+                        <h3 class="slider-item-title"><%= artigo.title %></h3>
+                    </a>
+                </li>
+  
+           <% }) %>
+
+        </ul>
+
+        <button type="button" class="slider-nav"></button>
+        <button type="button" class="slider-nav slider-nav-next"></button>
+    </div>
+<% } %>
+        
+
+    </main>
+
+<%- include('partials/footer') %>

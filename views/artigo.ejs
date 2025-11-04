@@ -1,0 +1,77 @@
+<<%- include('partials/header') %>
+
+    <main class="container">
+
+        <article>
+            <% if (article.image_url) { %>
+                <img src="<%= article.image_url %>" alt="<%= article.title %> (Clique para ampliar)" class="article-image-full" id="articleImage">
+            <% } %>
+            <div class="article-header">
+               
+  <% if (article.category) { %>
+                    <span class="article-category"><%= article.category %></span>
+                <% } %>
+                <h1><%= article.title %></h1>
+                <div class="article-meta">
+                   
+  <span>Por: <strong><%= article.author %></strong></span> |
+                    <span>Publicado em: <%= new Date(article.created_at).toLocaleDateString('pt-BR') %></span>
+                </div>
+            </div>
+            <div class="article-content">
+                <%- article.content %>
+            </div>
+        </article>
+
+        <% if 
+ (suggestions && suggestions.length > 0) { %>
+            <h2 class="section-title">Leia Também</h2>
+
+            <div class="suggestions-carousel-wrapper">
+                <div class="swiffy-slider slider-item-show3 slider-nav-round slider-nav-light" data-slider-nav="false">
+                    <ul class="slider-container">
+                        <% 
+ suggestions.forEach(artigo => { %>
+                            <li class="slider-item">
+                                <a href="/artigo/<%= artigo.id %>" class="slider-item-link">
+                                
+     <% if (artigo.image_url) { %>
+                                        <img src="<%= artigo.image_url %>" alt="<%= artigo.title %>" class="slider-item-image">
+                                    <% } else { %>
+     
+                                    <div class="slider-item-image placeholder-image"></div>
+                                    <% } %>
+                         
+            <h3 class="slider-item-title"><%= artigo.title %></h3>
+                                </a>
+                            </li>
+                        <% }) 
+ %>
+                    </ul>
+                    <button type="button" class="slider-nav"></button>
+                    <button type="button" class="slider-nav slider-nav-next"></button>
+                </div> </div> <% } %>
+        <a href="/" class="back-link">&larr;
+ Voltar para a página inicial</a>
+    </main>
+
+    <div id="imageModal" class="modal">
+        <span class="close-modal" id="closeModal">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <script>
+        // ... (código do modal inalterado) ...
+        var modal = document.getElementById("imageModal");
+ var img = document.getElementById("articleImage");
+        var modalImg = document.getElementById("modalImage");
+        var span = document.getElementById("closeModal");
+ if (img) { img.onclick = function() { modal.style.display = "block"; modalImg.src = this.src;
+ } }
+        if (span) { span.onclick = function() { modal.style.display = "none";
+ } }
+        modal.onclick = function(event) { if (event.target == modal) { modal.style.display = "none";
+ } }
+    </script>
+
+<%- include('partials/footer') %>

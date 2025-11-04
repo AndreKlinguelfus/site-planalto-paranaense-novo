@@ -1,0 +1,722 @@
+/* =======================================
+ * CSS GERAL (Corpo, Cabeçalho, Container)
+ * ======================================= */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Fonte para os Títulos Principais (H1, H2) */
+h1, h2 {
+    font-family: 'Merriweather', serif;
+    font-weight: 700;
+    color: #222;
+}
+
+/* IMPORTANTE: Ajustar os títulos dos artigos na grelha */
+.article-box h2 {
+    font-family: 'Merriweather', serif;
+    font-size: 1.4em;
+    margin-top: 0;
+    color: #333;
+}
+
+/* Ajuste: Fazer os títulos dos artigos serem links */
+.article-box h2 a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.2s ease;
+}
+/* MUDANÇA DE COR: Hover do link para Verde */
+.article-box h2 a:hover {
+    color: #33691E; /* Verde Floresta */
+}
+
+
+/* IMPORTANTE: Ajustar o título na página do artigo */
+.article-header h1 {
+    font-family: 'Merriweather', serif;
+    font-size: 2.2em;
+    color: #333;
+    margin-top: 0;
+}
+
+/* =======================================
+ * LAYOUT PRINCIPAL
+ * ======================================= */
+.container {
+    width: 90%;
+    max-width: 1400px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.main-content {
+    width: 100%;
+}
+
+/* ... (Estilos da .sidebar antiga) ... */
+.sidebar {
+    width: 100%;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 4px;
+    border: 1px solid #eee;
+}
+.sidebar h2 {
+    margin-top: 0;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+    font-size: 1.2em;
+}
+@media (max-width: 1024px) {
+    .container {
+        max-width: 90%;
+    }
+    .sidebar {
+        margin-top: 30px;
+    }
+}
+
+/* =======================================
+ * CSS DA PÁGINA INICIAL (index.ejs)
+ * ======================================= */
+.article-box {
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.article-box:last-child {
+    border-bottom: none;
+}
+
+.article-meta {
+    font-size: 0.9em;
+    color: #777;
+    margin-bottom: 15px;
+}
+
+.article-box a {
+    text-decoration: none;
+    /* MUDANÇA DE COR: Link Padrão para Verde */
+    color: #33691E; /* Verde Floresta */
+    font-weight: bold;
+}
+
+/* Etiqueta de Categoria (Pública) */
+.article-category {
+    display: inline-block;
+    /* MUDANÇA DE COR: Fundo para Verde */
+    background-color: #33691E; /* Verde Floresta */
+    color: #ffffff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+/* Imagem de Destaque (Página Inicial - Usada no Hero) */
+.article-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+/* =======================================
+ * CSS DA PÁGINA DO ARTIGO (artigo.ejs)
+ * ======================================= */
+.article-header h1 {
+    color: #333;
+    margin-top: 0;
+}
+
+.article-content {
+    line-height: 1.6;
+    font-size: 1.1em;
+    color: #444;
+    white-space: pre-line; /* <-- CORREÇÃO PARA ARTIGOS ANTIGOS */
+}
+
+.back-link {
+    display: block;
+    margin-top: 25px;
+    font-weight: bold;
+    /* MUDANÇA DE COR: Link "Voltar" para Verde */
+    color: #33691E; /* Verde Floresta */
+    text-decoration: none;
+}
+
+/* Imagem de Destaque (Página do Artigo) */
+.article-image-full {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+.article-image-link {
+    display: block;
+    text-decoration: none;
+    border: none;
+}
+.article-image-full:hover {
+    cursor: zoom-in;
+    opacity: 0.9;
+}
+
+/* Estilos do Modal (Lightbox) */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    overflow: auto;
+}
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 90vh;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.close-modal:hover {
+    color: #bbb;
+}
+
+/* =======================================
+ * CSS DA GRELHA DE NOTÍCIAS (Usada em /todos-artigos e category.ejs)
+ * ======================================= */
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+.news-grid .article-box {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding: 15px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+@media (max-width: 768px) {
+    .news-grid {
+        grid-template-columns: 1fr;
+    }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+    .news-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* =======================================
+ * CSS DO CABEÇALHO (NOVA VERSÃO COM LOGO IMG E CORES)
+ * ======================================= */
+
+/* --- A. BARRA SUPERIOR (AZUL) --- */
+.header-top {
+    background-color: #0d47a1; /* Azul Escuro */
+    color: #ffffff;
+    padding: 10px 0;
+}
+.header-top-container {
+    width: 90%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/* 1. O Logotipo (Agora como Imagem + Texto) */
+.logo {
+    text-decoration: none;
+    display: inline-block;
+    /* Adiciona Flexbox para garantir que a imagem e o texto se alinham */
+    display: flex;
+    align-items: center; 
+    gap: 10px; /* Espaço entre a imagem e o texto */
+}
+.logo img {
+    max-height: 70px;
+    width: auto;
+    vertical-align: middle;
+    /* Remove o flex-shrink padrão se houver */
+    flex-shrink: 0;
+}
+
+/* NOVO BLOCO: Estilo para o texto ao lado do logo */
+.logo-text {
+    font-family: 'Merriweather', serif;
+    font-size: 1.8em; /* Tamanho ligeiramente menor que o logo h1 original */
+    font-weight: 700;
+    color: #ffffff; /* Cor branca para contraste com o fundo castanho/ocre */
+    line-height: 1.1;
+}
+/* 2. A Barra de Pesquisa */
+.header-search form {
+    display: flex;
+    border: 1px solid #5e8bc9;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.header-search input[type="text"] {
+    padding: 8px 12px;
+    font-size: 0.9em;
+    border: none;
+    background-color: #0b3c8a;
+    color: #fff;
+    width: 250px;
+}
+.header-search button {
+    padding: 0 12px;
+    border: none;
+    background-color: #0b3c8a;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1em;
+}
+.header-search button:hover {
+    background-color: #a67c52; /* Castanho/Ocre */
+    color: #fff;
+}
+/* 3. Os Ícones Sociais */
+.header-social a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.3em;
+    margin-left: 12px;
+    transition: color 0.2s ease;
+}
+.header-social a:hover {
+    color: #a67c52; /* Castanho/Ocre */
+}
+
+/* --- B. BARRA DE MENU (CASTANHA) --- */
+.header-bottom-nav {
+    background-color: #a67c52; /* Castanho/Ocre */
+    padding: 5px 0;
+    border-bottom: 2px solid #8c663e; /* Castanho mais escuro */
+}
+.header-bottom-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+.header-bottom-nav ul li {
+    display: inline-block;
+}
+.header-bottom-nav ul li a,
+.header-bottom-nav ul li a:visited {
+    color: #ffffff; /* Texto Branco */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1em;
+    padding: 12px 18px;
+    display: block;
+    text-transform: uppercase;
+    font-family: 'Roboto', sans-serif;
+    transition: background-color 0.2s ease;
+}
+.header-bottom-nav ul li a:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Ajustes Responsivos para o Cabeçalho */
+@media (max-width: 1024px) {
+    .header-top-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .header-search input[type="text"] {
+        width: 100%;
+    }
+     .logo img {
+        max-height: 50px;
+    }
+}
+
+/* =======================================
+ * CSS DO BLOCO HERO (HOMEPAGE)
+ * ======================================= */
+.section-title {
+    font-family: 'Merriweather', serif;
+    font-size: 1.8em;
+    border-bottom: 2px solid #33691E; /* Verde Floresta */
+    padding-bottom: 5px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+.hero-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+.hero-article-main {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 15px;
+}
+.hero-article-main .article-image {
+    height: 400px;
+}
+.hero-article-main h2 {
+    font-size: 2.2em;
+    line-height: 1.2;
+}
+.hero-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.hero-article-side {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 15px;
+}
+.hero-article-side .article-image {
+    height: 150px;
+}
+.hero-article-side h2 {
+    font-size: 1.2em;
+    line-height: 1.3;
+}
+.hero-article-side .article-meta,
+.hero-article-side .article-category {
+    display: none;
+}
+@media (max-width: 900px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+    }
+    .hero-article-main .article-image {
+        height: 300px;
+    }
+    .hero-article-main h2 {
+        font-size: 1.8em;
+    }
+}
+
+/* =======================================
+ * CSS GERAL DOS CARROSSÉIS (HOMEPAGE E ARTIGO - ESTADO PADRÃO)
+ * ======================================= */
+.swiffy-slider .slider-container {
+    gap: 15px;
+}
+/* Estilo base do cartão (aplicado a todos os carrosséis) */
+.slider-item {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #ffffff;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
+}
+.slider-item-link {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    height: 100%;
+}
+/* Imagem base do cartão */
+.slider-item-image {
+    width: 100%;
+    height: 120px; /* Altura padrão */
+    object-fit: cover;
+    display: block;
+    border-bottom: 1px solid #eee;
+    margin:0;
+    flex-shrink: 0;
+}
+.placeholder-image {
+    height: 120px;
+    background-color: #f0f0f0;
+    display: flex; align-items: center; justify-content: center;
+    color: #ccc; font-size: 2em;
+}
+
+/* Título base do cartão */
+.slider-item-title {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 1em; /* Tamanho padrão */
+    line-height: 1.3;
+    padding: 10px 15px; /* Padding padrão */
+    margin: 0;
+    flex-grow: 1;
+    word-break: break-word;
+    display: block;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: unset;
+    overflow: visible;
+}
+.slider-item-link:hover .slider-item-title {
+    color: #33691E; /* Verde Floresta */
+}
+/* Responsividade base dos carrosséis */
+@media (max-width: 768px) {
+    .swiffy-slider.slider-item-show3 {
+        --slider-item-reveal: 2;
+        --slider-item-width-percent: calc(100% / 2);
+    }
+     .slider-item-image, .placeholder-image { height: 100px; }
+     .slider-item-title { font-size: 0.9em; padding: 8px 10px;}
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+    .swiffy-slider.slider-item-show3 {
+        --slider-item-reveal: 2;
+         --slider-item-width-percent: calc(100% / 2);
+    }
+}
+@media (min-width: 1025px) {
+     .swiffy-slider.slider-item-show3 {
+         --slider-item-reveal: 3;
+         --slider-item-width-percent: calc(100% / 3);
+     }
+}
+
+
+/* =======================================
+ * CSS DO RODAPÉ (AZUL, 4 COLUNAS)
+ * ======================================= */
+.main-footer {
+    background-color: #0d47a1; /* Azul Escuro */
+    color: #ccc;
+    padding-top: 40px;
+    margin-top: 30px;
+}
+.footer-container {
+    width: 90%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #0b3c8a; /* Azul um pouco mais claro */
+}
+.footer-column {
+    font-size: 0.9em;
+}
+.footer-column h4 {
+    font-family: 'Merriweather', serif;
+    font-size: 1.3em;
+    color: #ffffff;
+    margin-top: 0;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #a67c52; /* Castanho/Ocre */
+    padding-bottom: 8px;
+    display: inline-block;
+}
+.footer-column p {
+    line-height: 1.6;
+    margin-top: 0;
+}
+.footer-column a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+.footer-column a:hover {
+    color: #a67c52; /* Castanho/Ocre */
+}
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+.footer-column ul li a {
+    color: #ccc;
+    font-weight: bold;
+}
+.footer-column ul li a:hover {
+    color: #a67c52; /* Castanho/Ocre */
+    padding-left: 5px;
+}
+/* Logo no rodapé */
+.footer-column .logo img {
+    max-height: 80px; /* Altura no rodapé */
+    width: auto;
+    margin-bottom: 15px;
+}
+/* Ícones sociais no rodapé */
+.footer-social a {
+    font-size: 1.8em;
+    margin-left: 0;
+    margin-right: 15px;
+}
+.footer-copyright {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #0b3c8a; /* Azul um pouco mais claro */
+    font-size: 0.85em;
+    color: #888;
+}
+.footer-copyright p {
+    margin: 0;
+}
+@media (max-width: 900px) {
+    .footer-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 600px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =======================================
+ * CSS DO DROPDOWN DE CATEGORIAS (MENU)
+ * ======================================= */
+.nav-item-dropdown {
+    position: relative;
+}
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    min-width: 220px;
+    z-index: 100;
+    text-align: left;
+    list-style: none;
+    padding: 5px 0;
+    margin: 0;
+}
+.nav-item-dropdown:hover .dropdown-menu {
+    display: block;
+}
+.dropdown-menu li {
+    display: block;
+    width: 100%;
+}
+/* Corrigido para ser mais específico */
+.header-bottom-nav .dropdown-menu li a,
+.header-bottom-nav .dropdown-menu li a:visited {
+    font-family: 'Roboto', sans-serif;
+    color: #333; /* Texto escuro */
+    font-size: 0.9em;
+    font-weight: bold;
+    text-transform: none;
+    padding: 10px 15px;
+    display: block;
+    background-color: transparent;
+    border-bottom: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+/* Hover do link do dropdown */
+.header-bottom-nav .dropdown-menu li a:hover {
+    background-color: #f0f0f0;
+    color: #33691E; /* Verde Floresta */
+}
+.dropdown-toggle i {
+    font-size: 0.8em;
+    margin-left: 5px;
+    display: inline-block;
+}
+
+
+/* =======================================
+ * ESTILOS PARA O WRAPPER DO CARROSSEL "LEIA TAMBÉM" (artigo.ejs)
+ * ======================================= */
+
+/* --- O Wrapper que limita a altura APENAS do carrossel --- */
+.suggestions-carousel-wrapper {
+    /* --- LIMITAÇÃO DE ALTURA --- */
+    max-height: 30vh;       /* Define a ALTURA MÁXIMA como 30% da janela */
+    overflow-y: auto;       /* Adiciona scroll vertical SE o carrossel for mais alto */
+    box-sizing: border-box;
+    margin-bottom: 25px;     /* Espaço abaixo do wrapper, antes do link "Voltar" */
+    /* Opcional: Adiciona um padding interno se o scroll ficar muito colado */
+    /* padding: 5px; */
+    /* Opcional: Uma borda leve para visualizar a área com scroll */
+    /* border: 1px dashed #ccc; */
+}
+
+/* Garante margem adequada acima do wrapper (abaixo do título) */
+.section-title + .suggestions-carousel-wrapper {
+    margin-top: 0; /* Remove margem superior se vier logo após .section-title */
+}
+
+/* Garante que o slider se comporte bem dentro do wrapper com overflow */
+.suggestions-carousel-wrapper .swiffy-slider {
+    /* Remove margens que o slider possa ter por padrão */
+    margin: 0;
+     padding-bottom: 5px; /* Adiciona um respiro para o scrollbar */
+}
+
+/* (Opcional) Ajustes visuais DENTRO deste carrossel específico, se necessário */
+/* Exemplo: Imagem um pouco menor APENAS AQUI */
+/*
+.suggestions-carousel-wrapper .slider-item-image,
+.suggestions-carousel-wrapper .placeholder-image {
+    height: 100px;
+}
+.suggestions-carousel-wrapper .slider-item-title {
+    font-size: 0.9em;
+    padding: 8px 10px;
+}
+*/
+
+/* --- Limpeza Final --- */
+/* Certifica-te que não há mais blocos CSS específicos para
+   .suggestions-slider ou .suggestions-grid ou .suggestion-hero-grid abaixo desta linha */
+
+   /* =======================================
+ * CORREÇÃO: Ícones Sociais em Fundo Branco (ex: Página de Contato)
+ * ======================================= */
+
+/*
+ * Torna a regra mais específica: .container seguido por .header-social a
+ * Isto garante que esta regra "vence" a regra geral .header-social a
+ * apenas quando os ícones estão dentro do .container.
+*/
+.container .header-social a,
+.container .header-social a:visited {
+    color: #333; /* <<-- Define uma cor escura (cinza) como padrão */
+}
+
+/* Opcional: Mantém o hover azul ou muda para outra cor (ex: verde) */
+.container .header-social a:hover {
+    color: #0d47a1; /* Mantém o azul escuro no hover */
+    /* Ou muda para verde: color: #33691E; */
+}

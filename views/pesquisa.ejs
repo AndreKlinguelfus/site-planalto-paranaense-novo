@@ -1,0 +1,40 @@
+<%- include('partials/header') %>
+
+    <main class="container">
+
+        <h2 class="section-title">Resultados da Pesquisa por: "<%= searchTerm %>"</h2>
+
+        <div class="news-grid">
+            <% if (articles && articles.length > 0) { %>
+                <% articles.forEach(artigo => { %>
+                    <article class="article-box">
+        
+                 <% if (artigo.image_url) { %>
+                            <img src="<%= artigo.image_url %>" alt="<%= artigo.title %>" class="article-image">
+                        <% } %>
+                   
+      <div class="article-content-wrapper">
+                            <% if (artigo.category) { %>
+                                <span class="article-category"><%= artigo.category %></span>
+                           
+  <% } %>
+                            <h2><a href="/artigo/<%= artigo.id %>"><%= artigo.title %></a></h2>
+                            <div class="article-meta">
+                               <span>Por: <strong><%= artigo.author %></strong></span> 
+ |
+                               <span><%= new Date(artigo.created_at).toLocaleDateString('pt-BR') %></span>
+                            </div>
+                             <a href="/artigo/<%= artigo.id %>">Leia mais...</a>
+                        </div>
+           
+          </article>
+                <% }) %>
+            <% } else { %>
+                <p>Nenhum artigo encontrado para o termo "<%= searchTerm %>".
+ Tente pesquisar por outras palavras.</p>
+            <% } %>
+        </div>
+
+    </main>
+
+<%- include('partials/footer') %>

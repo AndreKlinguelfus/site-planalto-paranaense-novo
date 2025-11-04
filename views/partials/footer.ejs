@@ -1,0 +1,66 @@
+<footer class="main-footer">
+        <div class="footer-container">
+            
+            <div class="footer-column">
+                <a href="/" class="logo">
+                    <img src="/images/logo.png" alt="Logótipo Planalto Paranaense">
+                </a>
+       
+          <p>O teu jornal focado nas notícias que importam para a nossa região.</p>
+                <p>
+                    <i class="fa-solid fa-envelope"></i> 
+                    <a href="mailto:planaltoparanaense@gmail.com">planaltoparanaense@gmail.com</a>
+                </p>
+    
+             <p>
+                    <i class="fa-solid fa-phone"></i> 
+                    (41) 99999-8888 </p>
+            </div>
+
+            <div class="footer-column">
+                <h4>Categorias</h4>
+  
+               <ul>
+                    <% categories.forEach(category => { %>
+                        <li>
+                            <a href="/categoria/<%= encodeURIComponent(category.toLowerCase()) %>">
+       
+                          <%= category %>
+                            </a>
+                        </li>
+                    <% 
+ }) %>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Institucional</h4>
+                <ul>
+                    <li><a href="/">Home</a></li>
+     
+                <li><a href="#">Quem Somos</a></li>
+                    <li><a href="/contato">Fale Conosco</a></li>
+                    <li><a href="#">Política de Privacidade</a></li>
+                </ul>
+            </div>
+
+          
+   <div class="footer-column">
+                <h4>Sigam-nos</h4>
+                <p>Fica a par de tudo em tempo real.</p>
+                <div class="header-social footer-social">
+                    <a href="https://x.com/planaltoparana" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+            
+         <a href="https://instagram.com/planaltoparanaense" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+            </div>
+
+        </div>
+
+        <div class="footer-copyright">
+            <p>Copyright © 2025 Planalto Paranaense.
+ Todos os direitos reservados.</p> </div>
+    </footer>
+
+</body>
+</html>

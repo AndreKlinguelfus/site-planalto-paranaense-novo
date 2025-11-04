@@ -1,0 +1,33 @@
+<%- include('partials/header') %>
+
+    <main class="container">
+        
+        <h1>Entre em Contato</h1>
+
+        <div style="margin-bottom: 30px;">
+            <p>Tem alguma dúvida, sugestão, ou quer enviar uma pauta?
+ Utilize os canais abaixo:</p>
+            
+            <p style="font-size: 1.1em;">
+                <i class="fa-solid fa-envelope" style="margin-right: 8px;"></i> 
+                <strong>Email:</strong> <a href="mailto:<%= contactEmail %>"><%= contactEmail %></a>
+            </p>
+            
+    
+         <p style="font-size: 1.1em;">
+                <i class="fa-solid fa-phone" style="margin-right: 8px;"></i> 
+                <strong>Telefone:</strong> <%= contactPhone %> 
+            </p>
+
+            <p>Acompanhe-nos nas redes sociais:</p>
+            
+          
+   <div class="header-social" style="font-size: 1.5em; margin-top: 15px;">
+                 <a href="https://x.com/planaltoparana" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+                 <a href="https://instagram.com/planaltoparanaense" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+             </div>
+        </div>
+
+        </main>
+
+<%- include('partials/footer') %>

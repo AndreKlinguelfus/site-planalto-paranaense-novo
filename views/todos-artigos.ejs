@@ -1,0 +1,37 @@
+<%- include('partials/header') %>
+
+    <main class="container">
+
+        <h2 class="section-title">Todos os Artigos</h2>
+
+        <div class="news-grid">
+            <% if (articles.length > 0) { %>
+                <% articles.forEach(artigo => { %>
+                    <article class="article-box">
+              
+           <% if (artigo.image_url) { %>
+                            <img src="<%= artigo.image_url %>" alt="<%= artigo.title %>" class="article-image">
+                        <% } %>
+                        <div 
+ class="article-content-wrapper"> 
+                            <% if (artigo.category && artigo.category !== 'Geral') { %>
+                                <span class="article-category"><%= artigo.category %></span>
+                            
+ <% } %>
+                            <h2><a href="/artigo/<%= artigo.id %>"><%= artigo.title %></a></h2>
+                            <div class="article-meta">
+                               <span>Por: <strong><%= artigo.author %></strong></span> |
+ <span><%= new Date(artigo.created_at).toLocaleDateString('pt-BR') %></span>
+                            </div>
+                        </div>
+                    </article>
+                <% }) %>
+       
+      <% } else { %>
+                <p>Ainda não há notícias publicadas.</p>
+            <% } %>
+        </div> 
+
+    </main>
+
+<%- include('partials/footer') %>

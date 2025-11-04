@@ -1,0 +1,85 @@
+<%- include('partials/admin-header') %>
+
+
+   <main class="container">
+    
+        <nav class="admin-nav">
+            <a href="/admin/dashboard">Painel de Controlo</a>
+            <a href="/admin/novo">Escrever Novo Artigo</a>
+            <a href="/logout" class="logout">Sair (Logout)</a>
+        </nav>
+
+        <h1>Escrever Novo Artigo</h1>
+        
+        <p>Preenche os 
+ 
+campos abaixo para publicar uma nova notícia no site.</p>
+        
+        <form action="/admin/salvar" method="POST" enctype="multipart/form-data">
+            
+            <div class="form-group">
+                <label for="image">Imagem de Destaque:</label>
+                <input type="file" id="image" name="image" class="form-group-file" accept="image/*">
+        
+ 
+     </div>
+
+            <div class="form-group">
+                <label for="titulo">Título da Notícia:</label>
+                <input type="text" id="titulo" name="title" required>
+            </div>
+            
+            <div class="form-group">
+      
+  
+                 <label for="autor">Autor (ex: Redação, Repórter Local):</label>
+                <input type="text" id="autor" name="author">
+            </div>
+
+            <div class="form-group">
+                <label for="category">Categoria:</label>
+                
+ <select id="category" name="category" class="form-group-select" required>
+     
+                     
+                    <% categories.forEach(cat => { %>
+                        <option value="<%= cat %>"><%= cat %></option>
+                 
+    <% }) %>
+          
+                     
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="conteudo">Conteúdo Completo da Notícia:</label>
+   
+              <textarea id="conteudo" name="content"></textarea>
+          
+     </div>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            
+            <button type="submit" class="submit-button">Publicar Artigo</button>
+            
+        </form>
+
+    </main>
+
+<script>
+  
+ // Espera o HTML da página carregar completamente antes de iniciar o TinyMCE
+  document.addEventListener('DOMContentLoaded', (event) => {
+    tinymce.init({
+      selector: 'textarea#conteudo',
+      plugins: 'lists link image media table code help wordcount autoresize',
+      
+      // CORREÇÃO FEITA AQUI: A string 'toolbar' está agora numa única linha
+      toolbar: 'undo redo | blocks | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | removeformat | help',
+      
+      height: 500,
+      menubar: false,
+    });
+  });
+ </script>
+
+<%- include('partials/admin-footer') %>

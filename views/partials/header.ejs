@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title><%= typeof pageTitle !== 'undefined' ?
+ pageTitle : 'Planalto Paranaense' %></title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/css/style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.min.js" crossorigin="anonymous" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/css/swiffy-slider.min.css" rel="stylesheet" crossorigin="anonymous">
+
+</head>
+<body>
+
+    <header>
+        
+        <div class="header-top">
+            <div class="header-top-container">
+         
+        <a href="/" class="logo">
+                    <img src="/images/logo.png" alt="Logótipo Planalto Paranaense">
+                    <span class="logo-text">Planalto Paranaense</span>
+                </a>
+        
+                <div class="header-search">
+    
+                 <form action="/pesquisa" method="GET">
+                        <input type="text" name="q" placeholder="Buscar...">
+                        <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </form>
+        
+         </div>
+        
+                <div class="header-social">
+                    <a href="mailto:planaltoparanaense@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="https://x.com/planaltoparana" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+               
+      <a href="https://instagram.com/planaltoparanaense" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <nav class="header-bottom-nav">
+            <ul>
+                <li><a href="/">Home</a></li>
+              
+   <li><a href="/categoria/eleicoes-2026">Eleições 2026</a></li>
+
+                <li class="nav-item-dropdown">
+                    <a href="/todos-artigos" class="dropdown-toggle">
+                        Artigos 
+                        <i class="fa-solid fa-caret-down"></i> 
+     
+                </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/todos-artigos">Ver Todos os Artigos</a></li>
+                        <% categories.forEach(category => { %>
+        
+                     <li>
+                                <a href="/categoria/<%= encodeURIComponent(category.toLowerCase()) %>">
+                                    <%= category %>
+       
+                          </a>
+                            </li>
+                        <% }) %>
+                    </ul>
+ 
+                </li>
+                <li><a href="#">Colunistas</a></li>
+                <li><a href="/contato">Contato</a></li>
+            </ul>
+        </nav>
+
+    </header>

@@ -1,0 +1,53 @@
+<%- include('partials/admin-header') %>
+
+<link rel="stylesheet" href="/css/admin.css">
+    <main class="container">
+    
+        <nav class="admin-nav">
+            <a href="/admin/dashboard">Painel de Controlo</a>
+            <a href="/admin/novo">Escrever Novo Artigo</a>
+            <a href="/logout" class="logout">Sair (Logout)</a>
+        </nav>
+
+        <h2>Gerir Artigos Publicados</h2>
+        
+       
+ <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>Título do Artigo</th>
+                    <th>Autor</th>
+                    <th>Categoria</th> <th>Ações</th>
+       
+         </tr>
+            </thead>
+            <tbody>
+                <% if (articles.length > 0) { %>
+                    <% articles.forEach(article => { %>
+                     
+   <tr>
+                            <td><%= article.title %></td>
+                            <td><%= article.author %></td>
+                            <td><strong><%= article.category %></strong></td>
+       
+                     <td>
+                                <a href="/admin/editar/<%= article.id %>" class="edit">[Editar]</a>
+                                
+                                <a href="/admin/apagar/<%= article.id %>" class="delete" onclick="return confirm('Tens a certeza que queres apagar este artigo? Esta ação não pode ser desfeita.');">
+    [Apagar]
+</a>
+                            </td>
+                        </tr>
+                    <% }) %>
+              
+  <% } else { %>
+                    <tr>
+                        <td colspan="4">Ainda não há artigos publicados.</td>
+                    </tr>
+                <% } %>
+       
+     </tbody>
+        </table>
+
+    </main>
+<%- include('partials/admin-footer') %>

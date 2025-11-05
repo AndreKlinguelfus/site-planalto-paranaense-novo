@@ -87,13 +87,18 @@ app.use(express.urlencoded({ extended: true }));
 /* =======================================
  * Secção 3: Configuração da Base de Dados
  * ======================================= */
-const isProduction = process.env.NODE_ENV === 'production';
+const dbConfig = {
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_DATABASE,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT || 5432,
 
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: isProduction ? { rejectUnauthorized: false } : undefined
-});
-
+  // O Render exige SSL, mas o seu .env local provavelmente não.
+  // Esta linha ativa o SSL apenas em 'production'.
+  ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false
+};
+const pool = new Pool(dbConfig);
 
 /* =======================================
  * Secção 4: Middlewares (Sessão, CSRF, Multer)

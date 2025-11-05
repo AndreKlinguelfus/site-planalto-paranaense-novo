@@ -100,6 +100,30 @@ const dbConfig = {
 };
 const pool = new Pool(dbConfig);
 
+async function startApp() {
+
+  // --- CÓDIGO NOVO: Garante que a tabela de sessão existe ---
+  const client = await pool.connect();
+  try {
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS "session" (
+        "sid" varchar NOT NULL COLLATE "default",
+        "sess" json NOT NULL,
+        "expire" timestamp(6) NOT NULL,
+        CONSTRAINT "session_pkey" PRIMARY KEY ("sid")
+      );
+    `);
+    // Também criamos o índice (se não existir)
+    await client.query(`
+      CREATE INDEX IF NOT EXISTS "IDX_session_expire" ON "session" ("expire");
+    `);
+    console.log('Tabela "session" (sessão) verificada/criada com sucesso.');
+  } catch (err) {
+    console.error('ERRO AO CRIAR A TABELA DE SESSÃO:', err);
+    process.exit(1); // Falha se não conseguir criar a tabela
+  } finally {
+    client.release();
+  }
 /* =======================================
  * Secção 4: Middlewares (Sessão, CSRF, Multer)
  * ======================================= */
@@ -186,6 +210,8 @@ app.use((err, req, res, next) => { /* ... (o teu handler 500) ... */ });
 /* =======================================
  * Secção 8: Abrir o Restaurante
  * ======================================= */
-app.listen(port, () => {
-    console.log(`Servidor a ouvir na porta ${port}`);
-});
+
+} // <-- ADICIONE ESTA CHAVETA. Ela fecha a função startApp()
+
+// Agora, chame a função para iniciar tudo
+startApp();

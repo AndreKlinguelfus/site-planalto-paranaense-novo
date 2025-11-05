@@ -87,17 +87,10 @@ app.use(express.urlencoded({ extended: true }));
 /* =======================================
  * Secção 3: Configuração da Base de Dados
  * ======================================= */
-
-// Verifica se estamos em produção (no Render)
 const isProduction = process.env.NODE_ENV === 'production';
 
-// O 'pg' (node-postgres) irá usar automaticamente as variáveis de ambiente PG*
-// (ex: PGUSER, PGHOST) se a 'connectionString' não for fornecida.
 const pool = new Pool({
-  // O Render define a DATABASE_URL. Para desenvolvimento local, isto será 'undefined'
   connectionString: process.env.DATABASE_URL,
-  
-  // O Render exige SSL. Esta configuração habilita-o apenas em produção.
   ssl: isProduction ? { rejectUnauthorized: false } : undefined
 });
 
@@ -129,10 +122,8 @@ app.use((req, res, next) => {
 
 // --- MUDANÇA: Configuração do Multer para S3 ---
 // Configura o S3 Client (v3)
-const s3 = new S3Client({});
+const s3 = new S3Client({}); //
 
-// ***** INÍCIO DA CORREÇÃO *****
-// A função de filtro deve ser definida ANTES de ser usada.
 const imageFileFilter = (req, file, cb) => {
     const allowedExtensions = /jpeg|jpg|png|gif|webp/;
     const allowedMimeTypes = /image\/jpeg|image\/png|image\/gif|image\/webp/;
@@ -140,28 +131,25 @@ const imageFileFilter = (req, file, cb) => {
     const mimetype = allowedMimeTypes.test(file.mimetype);
     if (mimetype && extname) { cb(null, true); }
     else { cb(new Error('Apenas ficheiros de imagem (JPEG, PNG, GIF, WEBP) são permitidos!'), false); }
-};
-// ***** FIM DA CORREÇÃO *****
+}; //
 
 const upload = multer({
     storage: multerS3({
         s3: s3,
-        bucket: process.env.AWS_BUCKET_NAME, // O nome do bucket que criaste
-        acl: 'public-read', // Torna a imagem pública para ser lida
+        bucket: process.env.AWS_BUCKET_NAME, //
+        acl: 'public-read', //
         metadata: function (req, file, cb) {
             cb(null, { fieldName: file.fieldname });
-        },
+        }, //
         key: function (req, file, cb) {
-             // Cria um nome de ficheiro único
              const safeOriginalName = file.originalname.replace(/[^a-zA-Z0-9.]/g, '_');
              const uniqueName = Date.now() + '-' + safeOriginalName;
              cb(null, uniqueName);
-        }
+        } //
     }),
-    fileFilter: imageFileFilter, // Agora a função já existe
-    limits: { fileSize: 5 * 1024 * 1024 }
+    fileFilter: imageFileFilter,
+    limits: { fileSize: 5 * 1024 * 1024 } //
 });
-
 // Esta função foi movida para cima
 // const imageFileFilter = (req, file, cb) => { ... };
 // --- Fim da Mudança ---

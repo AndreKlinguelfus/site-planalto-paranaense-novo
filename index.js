@@ -207,11 +207,18 @@ app.use((err, req, res, next) => { /* ... (o teu handler CSRF) ... */ });
 app.use((req, res, next) => { /* ... (o teu handler 404) ... */ });
 app.use((err, req, res, next) => { /* ... (o teu handler 500) ... */ });
 
+
 /* =======================================
  * Secção 8: Abrir o Restaurante
  * ======================================= */
 
-} // <-- ADICIONE ESTA CHAVETA. Ela fecha a função startApp()
+  // <<< --- ADICIONE ESTAS 3 LINHAS DE VOLTA --- >>>
+  app.listen(port, () => {
+      console.log(`Servidor a ouvir na porta ${port}`);
+  });
+  // <<< --- FIM DA ADIÇÃO --- >>>
 
-// Agora, chame a função para iniciar tudo
+} // <-- A chaveta que fecha a função startApp()
+
+// A chamada da função
 startApp();

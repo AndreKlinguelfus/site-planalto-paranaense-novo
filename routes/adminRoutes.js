@@ -217,12 +217,12 @@ module.exports = (pool, s3, upload, loginLimiter, checkAuth, validationTools) =>
     );
 
     // [CÓDIGO NOVO] Rota /admin/dashboard que estava em falta
-    /** Rota GET /admin/dashboard (Painel de Controlo) **/
+    /** Rota GET /admin/dashboard (Painel de Controle) **/
     router.get('/admin/dashboard', checkAuth, async (req, res, next) => {
         try {
             const result = await pool.query('SELECT id, title, author, category FROM articles ORDER BY created_at DESC');
             res.render('admin-dashboard', {
-                pageTitle: 'Painel de Controlo',
+                pageTitle: 'Painel de Controle',
                 articles: result.rows
             });
         } catch (error) {
